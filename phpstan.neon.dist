@@ -1,0 +1,20 @@
+parameters:
+    level: max
+    paths:
+        - src
+        - config
+        - database
+    # A package has no application config_path(), so point larastan at the
+    # package's own config directory. env() stays forbidden everywhere else.
+    configDirectories:
+        - %currentWorkingDirectory%/config
+    exceptions:
+        # The package's own exceptions must be documented everywhere they can
+        # escape. Only they are checked, so undocumented framework calls do not
+        # make legitimate catch blocks look dead.
+        checkedExceptionClasses:
+            - GtsMeghni\Satim\Exceptions\SatimException
+        check:
+            missingCheckedExceptionInThrows: true
+            tooWideThrowType: true
+    tmpDir: build/phpstan
