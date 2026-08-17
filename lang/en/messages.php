@@ -12,5 +12,5 @@ return [
      * Hotline text required by SATIM. It must always be shown together with the
      * SATIM logo, never on its own.
      */
-    'support_message' => 'If you have a payment issue, please contact SATIM hotline 3020',
+    'support_message' => 'If you have a payment issue, please contact the SATIM toll-free number 3020',
 ];

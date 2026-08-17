@@ -20,6 +20,7 @@ use RuntimeException;
  * @method static \GtsMeghni\Satim\Data\AcknowledgeResult acknowledge(string $orderId, \GtsMeghni\Satim\Enums\SatimLanguage|string|null $language = null)
  * @method static \GtsMeghni\Satim\Data\RefundResult refund(string $orderId, int|float|string $amount, \GtsMeghni\Satim\Enums\SatimLanguage|string|null $language = null)
  * @method static \GtsMeghni\Satim\Data\Receipt receipt(\GtsMeghni\Satim\Data\AcknowledgeResult $result, ?\DateTimeInterface $paidAt = null, \GtsMeghni\Satim\Enums\SatimLanguage|string|null $language = null)
+ * @method static string supportMessage(\GtsMeghni\Satim\Enums\SatimLanguage|string|null $language = null)
  *
  * @see \GtsMeghni\Satim\Satim
  */

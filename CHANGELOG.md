@@ -1,6 +1,8 @@
 # Release Notes
 
-## [Unreleased](https://github.com/gts-meghni/laravel-satim/compare/v1.0.0...HEAD)
+## [Unreleased](https://github.com/gts-meghni/laravel-satim/compare/v1.1.0...HEAD)
+
+## [v1.1.0](https://github.com/gts-meghni/laravel-satim/releases/tag/v1.1.0) - 2026-08-17
 
 ### Added
 
@@ -14,10 +16,12 @@
 - `SatimFakeResponse` named responses (`registered`, `registerFailed`, `paid`, `declined`, `reversed`, `acknowledgeRefunded`, `refunded`, `refundFailed`, `connectionFailure`, `make`) and per-operation response queues.
 - Assertions on the facade: `assertRegistered`, `assertAcknowledged`, `assertRefunded`, `assertSent`, `assertNotSent`, `assertNothingSent`, `assertSentCount`, and `recorded`.
 - `SatimTransport` contract, bound to `SatimClient`, as the seam the fake replaces.
+- `Satim::supportMessage()`, which returns the SATIM hotline text on its own, in the language you ask for and the configured one by default. SATIM requires that text on a rejected return page, where there is no receipt to carry it.
 
 ### Changed
 
 - `SatimOperation` now carries its gateway endpoint, and the transport takes the operation instead of an endpoint string.
+- The hotline text now names SATIM's toll-free number the way the integration guide does: "numéro vert de la SATIM" in French, with English and Arabic reworded to match. The number itself is unchanged. Publish `satim-lang` to override the wording.
 
 ## [v1.0.0](https://github.com/gts-meghni/laravel-satim/releases/tag/v1.0.0) - 2026-08-11
 

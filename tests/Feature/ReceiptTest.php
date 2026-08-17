@@ -80,9 +80,9 @@ it('gives the hotline message in the language of the receipt', function (SatimLa
     expect($receipt->supportMessage)->toBe($expected)
         ->and($receipt->language)->toBe($language);
 })->with([
-    [SatimLanguage::EN, 'If you have a payment issue, please contact SATIM hotline 3020'],
-    [SatimLanguage::FR, 'En cas de problème de paiement, veuillez contacter la hotline SATIM 3020'],
-    [SatimLanguage::AR, 'إذا واجهت مشكلة في الدفع، يرجى الاتصال بالخط الساخن لساتيم 3020'],
+    [SatimLanguage::EN, 'If you have a payment issue, please contact the SATIM toll-free number 3020'],
+    [SatimLanguage::FR, 'En cas de problème de paiement, veuillez contacter le numéro vert de la SATIM 3020'],
+    [SatimLanguage::AR, 'إذا واجهت مشكلة في الدفع، يرجى الاتصال بالرقم الأخضر لساتيم 3020'],
 ]);
 
 it('uses the configured language by default', function () {
@@ -133,4 +133,21 @@ it('needs no further gateway calls', function () {
 
 it('exposes the payment method as a single label for both card types', function () {
     expect(Receipt::PAYMENT_METHOD)->toBe('CIB/EDAHABIA');
+});
+
+it('gives the hotline message on its own, for a rejected return page', function (SatimLanguage $language, string $expected) {
+    expect(Satim::supportMessage($language))->toBe($expected);
+})->with([
+    [SatimLanguage::EN, 'If you have a payment issue, please contact the SATIM toll-free number 3020'],
+    [SatimLanguage::FR, 'En cas de problème de paiement, veuillez contacter le numéro vert de la SATIM 3020'],
+    [SatimLanguage::AR, 'إذا واجهت مشكلة في الدفع، يرجى الاتصال بالرقم الأخضر لساتيم 3020'],
+]);
+
+it('gives the hotline message in the configured language by default', function () {
+    expect(Satim::supportMessage())->toBe(Satim::supportMessage(SatimLanguage::FR));
+});
+
+it('rejects an unknown language for the hotline message', function () {
+    expect(fn () => Satim::supportMessage('de'))
+        ->toThrow(SatimValidationException::class);
 });

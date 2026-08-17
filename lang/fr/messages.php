@@ -8,5 +8,5 @@ return [
      * Hotline text required by SATIM. It must always be shown together with the
      * SATIM logo, never on its own.
      */
-    'support_message' => 'En cas de problème de paiement, veuillez contacter la hotline SATIM 3020',
+    'support_message' => 'En cas de problème de paiement, veuillez contacter le numéro vert de la SATIM 3020',
 ];

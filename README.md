@@ -165,6 +165,16 @@ That fixed wording ships in the package's language files in French, English and 
 follows the language you pass to `acknowledge()`, not the application locale, so it matches what
 the customer saw on the payment page. Publish `satim-lang` to change it.
 
+SATIM also requires the hotline text on a rejected return page, where there is no receipt to carry
+it. `Satim::supportMessage()` gives it on its own, in the language you ask for and the configured
+one by default:
+
+```php
+$hotline = Satim::supportMessage($attempt->language);
+```
+
+The same rule applies as on a receipt: show it beside the SATIM logo, never the text alone.
+
 ### Noticing Refunds and Cancellations
 
 Refunds can be issued from your application (see below) or by staff inside SATIM's back office.

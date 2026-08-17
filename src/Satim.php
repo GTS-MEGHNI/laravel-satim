@@ -342,10 +342,21 @@ final readonly class Satim
     /**
      * Hotline text, which the spec requires beside the SATIM logo and never on
      * its own.
+     *
+     * SATIM requires it on a rejected return page too, where there is no
+     * receipt to carry it, so it is available on its own.
+     *
+     * @param  SatimLanguage|string|null  $language  Defaults to the configured language.
+     *
+     * @throws SatimValidationException
      */
-    private function supportMessage(SatimLanguage $language): string
+    public function supportMessage(SatimLanguage|string|null $language = null): string
     {
-        $message = Lang::get('satim::messages.support_message', [], mb_strtolower($language->value));
+        $message = Lang::get(
+            'satim::messages.support_message',
+            [],
+            mb_strtolower($this->resolveLanguage($language)->value),
+        );
 
         return is_string($message) ? $message : '';
     }
